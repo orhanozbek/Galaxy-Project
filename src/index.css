@@ -1,0 +1,75 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --neon-lime: #CCFF00;
+  --neon-pink: #FF007A;
+  --deep-space: #0B0E14;
+}
+
+body {
+  background-color: var(--deep-space);
+  color: white;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, .font-lexend {
+  font-family: 'Lexend', sans-serif;
+}
+
+.glow-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 32px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.glow-card:hover {
+  border-color: var(--neon-lime);
+  box-shadow: 0 0 30px rgba(204, 255, 0, 0.15);
+  transform: translateY(-5px);
+}
+
+.neon-btn {
+  background: var(--neon-lime);
+  color: black;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 99px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neon-btn:hover {
+  box-shadow: 0 0 25px rgba(204, 255, 0, 0.6);
+  transform: scale(1.05);
+}
+
+.stardust {
+  background-image: radial-gradient(circle at center, rgba(255,255,255,0.15) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Yörünge Animasyonları */
+.orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: spin linear infinite;
+}
+
+.orbit-ring-1 { width: 400px; height: 400px; animation-duration: 30s; border-left-color: var(--neon-lime); }
+.orbit-ring-2 { width: 600px; height: 600px; animation-duration: 45s; animation-direction: reverse; border-right-color: var(--neon-pink); }
+.orbit-ring-3 { width: 800px; height: 800px; animation-duration: 60s; border-top-color: rgba(204, 255, 0, 0.3); }
+
+@keyframes spin {
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
