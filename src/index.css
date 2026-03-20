@@ -13,14 +13,24 @@ body {
   color: white;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
-  cursor: crosshair;
+  cursor: none; /* Custom cursor için varsayılanı gizledik */
 }
 
 h1, h2, h3, .font-lexend {
   font-family: 'Lexend', sans-serif;
 }
 
-/* Mouse Spotlight Effect */
+/* Noise / Film Grain Texture */
+.noise {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Mouse Spotlight */
 .spotlight {
   position: fixed;
   top: 0;
@@ -28,7 +38,7 @@ h1, h2, h3, .font-lexend {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  background: radial-gradient(600px circle at var(--x) var(--y), rgba(204, 255, 0, 0.05), transparent 80%);
+  background: radial-gradient(800px circle at var(--x) var(--y), rgba(204, 255, 0, 0.03), transparent 60%);
   z-index: 1;
 }
 
@@ -36,25 +46,62 @@ h1, h2, h3, .font-lexend {
 .sphere {
   position: absolute;
   border-radius: 50%;
-  filter: blur(40px);
+  filter: blur(60px);
   z-index: 0;
-  opacity: 0.3;
+  opacity: 0.2;
 }
-
-.sphere-1 { width: 400px; height: 400px; background: var(--neon-lime); top: -100px; left: -100px; }
-.sphere-2 { width: 300px; height: 300px; background: var(--neon-purple); bottom: 10%; right: -50px; }
-
-/* Section Overlap */
-.section-overlap {
-  margin-top: -100px;
-  position: relative;
-  z-index: 20;
-}
+.sphere-1 { width: 500px; height: 500px; background: var(--neon-lime); top: -150px; left: -100px; }
+.sphere-2 { width: 400px; height: 400px; background: var(--neon-purple); bottom: 5%; right: -50px; }
 
 /* Custom Glassmorphism */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.01);
-  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.015);
+  backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 40px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(204, 255, 0, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Hide scrollbar for smooth experience */
+::-webkit-scrollbar { width: 0px; }
+
+/* Custom Cursor Styles */
+#cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--neon-lime);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+#cursor-ring {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(204, 255, 0, 0.5);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, border-color 0.2s;
+}
+
+body.hovering #cursor-dot {
+  width: 0px; height: 0px;
+}
+body.hovering #cursor-ring {
+  width: 60px; height: 60px;
+  border-color: var(--neon-lime);
+  background-color: rgba(204, 255, 0, 0.1);
+  backdrop-filter: blur(2px);
 }
