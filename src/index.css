@@ -4,8 +4,8 @@
 
 :root {
   --neon-lime: #CCFF00;
-  --neon-pink: #FF007A;
-  --deep-space: #0B0E14;
+  --neon-purple: #9D00FF;
+  --deep-space: #05070A;
 }
 
 body {
@@ -13,63 +13,48 @@ body {
   color: white;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
+  cursor: crosshair;
 }
 
 h1, h2, h3, .font-lexend {
   font-family: 'Lexend', sans-serif;
 }
 
-.glow-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 32px;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
+/* Mouse Spotlight Effect */
+.spotlight {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(600px circle at var(--x) var(--y), rgba(204, 255, 0, 0.05), transparent 80%);
+  z-index: 1;
 }
 
-.glow-card:hover {
-  border-color: var(--neon-lime);
-  box-shadow: 0 0 30px rgba(204, 255, 0, 0.15);
-  transform: translateY(-5px);
-}
-
-.neon-btn {
-  background: var(--neon-lime);
-  color: black;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border-radius: 99px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.neon-btn:hover {
-  box-shadow: 0 0 25px rgba(204, 255, 0, 0.6);
-  transform: scale(1.05);
-}
-
-.stardust {
-  background-image: radial-gradient(circle at center, rgba(255,255,255,0.15) 1px, transparent 1px);
-  background-size: 50px 50px;
-}
-
-/* Yörünge Animasyonları */
-.orbit-ring {
+/* Floating Spheres */
+.sphere {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: 1px dashed rgba(255, 255, 255, 0.1);
   border-radius: 50%;
-  animation: spin linear infinite;
+  filter: blur(40px);
+  z-index: 0;
+  opacity: 0.3;
 }
 
-.orbit-ring-1 { width: 400px; height: 400px; animation-duration: 30s; border-left-color: var(--neon-lime); }
-.orbit-ring-2 { width: 600px; height: 600px; animation-duration: 45s; animation-direction: reverse; border-right-color: var(--neon-pink); }
-.orbit-ring-3 { width: 800px; height: 800px; animation-duration: 60s; border-top-color: rgba(204, 255, 0, 0.3); }
+.sphere-1 { width: 400px; height: 400px; background: var(--neon-lime); top: -100px; left: -100px; }
+.sphere-2 { width: 300px; height: 300px; background: var(--neon-purple); bottom: 10%; right: -50px; }
 
-@keyframes spin {
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
+/* Section Overlap */
+.section-overlap {
+  margin-top: -100px;
+  position: relative;
+  z-index: 20;
+}
+
+/* Custom Glassmorphism */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 40px;
 }
